@@ -46,3 +46,4 @@ class Meeting(Base):
     cost = Column(Float)
 
     confidence = Column(Float)
+    #models of the app
