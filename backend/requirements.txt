@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+python-dotenv
+google-auth
+google-auth-oauthlib
+google-api-python-client
+google-generativeai
+pandas
+numpy
+scikit-learn
+python-jose
+passlib[bcrypt]
+python-multipart
