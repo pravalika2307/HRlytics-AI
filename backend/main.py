@@ -10,6 +10,14 @@ app = FastAPI(
     version="1.0.0"
 )
 
+from app.models.meeting_model import (
+    Employee,
+    Project,
+    Meeting,
+    MeetingAttribution,
+    CostAllocation
+)
+
 Base.metadata.create_all(bind=engine)
 
 app.include_router(calendar_router)
