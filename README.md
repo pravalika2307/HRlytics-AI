@@ -13,18 +13,18 @@ Organizations invest significant time and resources in meetings, but often lack 
 HRlytics AI addresses this challenge by connecting meeting data, project attribution, and workforce cost analytics into a single intelligence platform.
 
 ## Key Features
-🤖 AI-Powered Project Attribution using Gemini AI
-📅 Calendar-Based Meeting Analytics
-💰 Automated Workforce Cost Allocation
-📊 Interactive Analytics Dashboard
-📈 Project-Wise Budget Tracking
-🎯 Confidence-Based Attribution Scoring
-🔍 Workforce Utilization Insights
-⚡ Real-Time HR Cost Intelligence
+- 🤖 AI-Powered Project Attribution using Gemini AI
+- 📅 Calendar-Based Meeting Analytics
+- 💰 Automated Workforce Cost Allocation
+- 📊 Interactive Analytics Dashboard
+- 📈 Project-Wise Budget Tracking
+- 🎯 Confidence-Based Attribution Scoring
+- 🔍 Workforce Utilization Insights
+- ⚡ Real-Time HR Cost Intelligence
 
 ## Architecture
 ### Google Calendar
-→ Meeting Data Collection
-→ AI Attribution Engine
-→ Cost Intelligence Engine
-→ Analytics Dashboard
+- Meeting Data Collection
+- AI Attribution Engine
+- Cost Intelligence Engine
+- Analytics Dashboard
