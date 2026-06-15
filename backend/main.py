@@ -4,16 +4,14 @@ from app.database.database import engine
 from app.models.models import Base
 
 from app.api.calendar import router as calendar_router
+from app.api.meetings import router as meetings_router
 
 app = FastAPI(
     title="HRlytics AI",
     version="1.0.0"
 )
 
-from app.models.meeting_model import (
-    Employee,
-    Project,
-    Meeting,
+from app.models.models import (
     MeetingAttribution,
     CostAllocation
 )

@@ -47,3 +47,28 @@ class Meeting(Base):
 
     confidence = Column(Float)
     #models of the app
+
+class MeetingAttribution(Base):
+    __tablename__ = "meeting_attributions"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    meeting_id = Column(Integer)
+
+    project_name = Column(String)
+
+    confidence = Column(Float)
+
+    reason = Column(String)
+
+
+class CostAllocation(Base):
+    __tablename__ = "cost_allocations"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    project_name = Column(String)
+
+    allocated_cost = Column(Float)
+
+    month = Column(String)
