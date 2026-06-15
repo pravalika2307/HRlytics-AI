@@ -1,26 +1,36 @@
-function AIInsights() {
+function AIInsights({ insights }) {
   return (
     <div
       style={{
         background: "#111827",
         borderRadius: "20px",
         padding: "20px",
+        marginTop: "30px"
       }}
     >
       <h2>AI Workforce Insights</h2>
 
       <br />
 
-      <p>⚠ Meeting costs increased this month</p>
+      <p>
+        💰 Highest Cost Meeting:
+        {" "}
+        {insights.highest_meeting}
+      </p>
+
       <br />
 
-      <p>💰 Highest cost meeting detected</p>
+      <p>
+        📈 Average Meeting Cost:
+        ₹{insights.average_cost}
+      </p>
+
       <br />
 
-      <p>📈 Workforce utilization healthy</p>
-      <br />
-
-      <p>🎯 Budget allocation on track</p>
+      <p>
+        🎯 Peak Meeting Cost:
+        ₹{insights.highest_cost}
+      </p>
     </div>
   );
 }

@@ -6,14 +6,28 @@ import AIInsights from "../components/AIInsights";
 function Dashboard() {
   const [meetingCount, setMeetingCount] = useState(0);
   const [totalCost, setTotalCost] = useState(0);
+  const [insights, setInsights] = useState({
+  average_cost: 0,
+  highest_cost: 0,
+  highest_meeting: ""
+});
 
   useEffect(() => {
-    api.get("/analytics/meeting-count")
-      .then(res => setMeetingCount(res.data.meeting_count));
+  api.get("/analytics/meeting-count")
+    .then((res) => {
+      setMeetingCount(res.data.meeting_count);
+    });
 
-    api.get("/analytics/total-cost")
-      .then(res => setTotalCost(res.data.total_hr_cost));
-  }, []);
+  api.get("/analytics/total-cost")
+    .then((res) => {
+      setTotalCost(res.data.total_hr_cost);
+    });
+
+  api.get("/insights/")
+    .then((res) => {
+      setInsights(res.data);
+    });
+}, []);
 
 return (
   <div
@@ -46,13 +60,22 @@ return (
         title="Total HR Cost"
         value={`₹${totalCost}`}
       />
+
+      <MetricCard
+  title="Average Meeting Cost"
+  value={`₹${insights.average_cost}`}
+/>
+
+<MetricCard
+  title="Highest Cost Meeting"
+  value={insights.highest_meeting}
+/>
     </div>
 
-    <AIInsights />
+    <AIInsights insights={insights} />
   </div>
 );
 }
 
-<AIInsights />
 
 export default Dashboard;
