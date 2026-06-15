@@ -39,7 +39,11 @@ class Meeting(Base):
 
     title = Column(String)
 
+    description = Column(String)
+
     duration = Column(Float)
+
+    attendees_count = Column(Integer)
 
     project_id = Column(Integer, ForeignKey("projects.id"))
 

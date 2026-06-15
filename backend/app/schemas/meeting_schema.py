@@ -6,3 +6,7 @@ class MeetingCreate(BaseModel):
     description: str
     duration_hours: float
     attendees_count: int
+
+
+class MeetingResponse(MeetingCreate):
+    meeting_cost: float
