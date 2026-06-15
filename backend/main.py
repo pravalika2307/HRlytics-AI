@@ -22,6 +22,8 @@ Base.metadata.create_all(bind=engine)
 
 app.include_router(calendar_router)
 
+app.include_router(meetings_router)
+
 @app.get("/")
 def root():
     return {"message": "Welcome to HRlytics AI"}
@@ -29,3 +31,7 @@ def root():
 @app.get("/health")
 def health():
     return {"status": "healthy"}
+
+from app.api.meetings import (
+    router as meetings_router
+)
