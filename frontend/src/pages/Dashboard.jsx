@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import MetricCard from "../components/MetricCard";
+import AIInsights from "../components/AIInsights";
 
 function Dashboard() {
   const [meetingCount, setMeetingCount] = useState(0);
@@ -38,5 +39,7 @@ function Dashboard() {
     </div>
   );
 }
+
+<AIInsights />
 
 export default Dashboard;

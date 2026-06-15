@@ -1,7 +1,23 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Dashboard from "./pages/Dashboard";
+import Meetings from "./pages/Meetings";
+import Analytics from "./pages/Analytics";
+
+import Navbar from "./components/Navbar";
 
 function App() {
-  return <Dashboard />;
+  return (
+    <BrowserRouter>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/meetings" element={<Meetings />} />
+        <Route path="/analytics" element={<Analytics />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
