@@ -4,12 +4,12 @@ import Dashboard from "./pages/Dashboard";
 import Meetings from "./pages/Meetings";
 import Analytics from "./pages/Analytics";
 
-import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <Sidebar />
 
       <Routes>
         <Route path="/" element={<Dashboard />} />

@@ -24,7 +24,12 @@ const data = [
 
 function Analytics() {
   return (
-    <div style={{ padding: "30px" }}>
+    <div
+  style={{
+    marginLeft: "280px",
+    padding: "30px",
+  }}
+>
       <h1>Analytics</h1>
 
       <div

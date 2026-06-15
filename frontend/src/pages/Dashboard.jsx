@@ -15,29 +15,42 @@ function Dashboard() {
       .then(res => setTotalCost(res.data.total_hr_cost));
   }, []);
 
-  return (
-    <div style={{ padding: "30px" }}>
-      <h1>HRlytics AI Dashboard</h1>
+return (
+  <div
+    style={{
+      marginLeft: "280px",
+      padding: "30px",
+    }}
+  >
+    <h1
+      style={{
+        marginBottom: "30px",
+      }}
+    >
+      Workforce Intelligence Command Center
+    </h1>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "20px",
-          marginTop: "20px"
-        }}
-      >
-        <MetricCard
-          title="Meetings"
-          value={meetingCount}
-        />
+    <div
+      style={{
+        display: "flex",
+        gap: "20px",
+        marginBottom: "30px",
+      }}
+    >
+      <MetricCard
+        title="Meetings"
+        value={meetingCount}
+      />
 
-        <MetricCard
-          title="Total HR Cost"
-          value={`₹${totalCost}`}
-        />
-      </div>
+      <MetricCard
+        title="Total HR Cost"
+        value={`₹${totalCost}`}
+      />
     </div>
-  );
+
+    <AIInsights />
+  </div>
+);
 }
 
 <AIInsights />

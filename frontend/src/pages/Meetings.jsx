@@ -5,43 +5,110 @@ function Meetings() {
   const [meetings, setMeetings] = useState([]);
 
   useEffect(() => {
-    api
-      .get("/meetings/")
-      .then((res) => {
-        setMeetings(res.data);
-      });
+    api.get("/meetings/").then((res) => {
+      setMeetings(res.data);
+    });
   }, []);
 
   return (
-    <div style={{ padding: "30px" }}>
-      <h1>Meetings History</h1>
-
-      <table
-        border="1"
-        cellPadding="10"
+    <div
+      style={{
+        marginLeft: "280px",
+        padding: "30px",
+      }}
+    >
+      <h1
         style={{
-          marginTop: "20px",
-          width: "100%",
+          marginBottom: "20px",
         }}
       >
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Duration</th>
-            <th>Cost</th>
-          </tr>
-        </thead>
+        Meetings History
+      </h1>
 
-        <tbody>
-          {meetings.map((meeting) => (
-            <tr key={meeting.id}>
-              <td>{meeting.title}</td>
-              <td>{meeting.duration}</td>
-              <td>₹{meeting.cost}</td>
+      <div
+        style={{
+          background: "#111827",
+          borderRadius: "20px",
+          padding: "20px",
+          overflowX: "auto",
+        }}
+      >
+        <table
+          style={{
+            width: "100%",
+            borderCollapse: "collapse",
+          }}
+        >
+          <thead>
+            <tr>
+              <th
+                style={{
+                  textAlign: "left",
+                  padding: "15px",
+                  borderBottom: "1px solid #374151",
+                }}
+              >
+                Title
+              </th>
+
+              <th
+                style={{
+                  textAlign: "left",
+                  padding: "15px",
+                  borderBottom: "1px solid #374151",
+                }}
+              >
+                Duration (Hours)
+              </th>
+
+              <th
+                style={{
+                  textAlign: "left",
+                  padding: "15px",
+                  borderBottom: "1px solid #374151",
+                }}
+              >
+                Cost
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {meetings.map((meeting) => (
+              <tr key={meeting.id}>
+                <td
+                  style={{
+                    padding: "15px",
+                    borderBottom: "1px solid #1f2937",
+                  }}
+                >
+                  {meeting.title}
+                </td>
+
+                <td
+                  style={{
+                    padding: "15px",
+                    borderBottom: "1px solid #1f2937",
+                  }}
+                >
+                  {meeting.duration}
+                </td>
+
+                <td
+                  style={{
+                    padding: "15px",
+                    borderBottom: "1px solid #1f2937",
+                    color: "#60a5fa",
+                    fontWeight: "bold",
+                  }}
+                >
+                  ₹{meeting.cost}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
