@@ -47,3 +47,18 @@ class CostAllocation(Base):
     project_name = Column(String)
     allocated_cost = Column(Float)
     month = Column(String)
+
+class Meeting(Base):
+    __tablename__ = "meetings"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    title = Column(String)
+
+    description = Column(String)
+
+    duration_hours = Column(Float)
+
+    attendees_count = Column(Integer)
+
+    meeting_cost = Column(Float)
