@@ -45,8 +45,6 @@ class Meeting(Base):
 
     attendees_count = Column(Integer)
 
-    project_id = Column(Integer, ForeignKey("projects.id"))
-
     cost = Column(Float)
 
     confidence = Column(Float)
