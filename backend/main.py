@@ -5,10 +5,20 @@ from app.models.models import Base
 
 from app.api.calendar import router as calendar_router
 from app.api.meetings import router as meetings_router
+from app.api.analytics import router as analytics_router
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
     title="HRlytics AI",
     version="1.0.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 from app.models.models import (
@@ -22,6 +32,8 @@ app.include_router(calendar_router)
 
 app.include_router(meetings_router)
 
+app.include_router(analytics_router)
+
 @app.get("/")
 def root():
     return {"message": "Welcome to HRlytics AI"}
@@ -32,4 +44,8 @@ def health():
 
 from app.api.meetings import (
     router as meetings_router
+)
+
+from app.api.analytics import (
+    router as analytics_router
 )
