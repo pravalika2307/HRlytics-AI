@@ -30,6 +30,7 @@ function Sidebar() {
         <Link to="/">Dashboard</Link>
         <Link to="/meetings">Meetings</Link>
         <Link to="/analytics">Analytics</Link>
+        <Link to="/advisor">AI Workforce Advisor</Link>
       </div>
     </div>
   );
