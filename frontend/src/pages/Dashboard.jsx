@@ -16,18 +16,24 @@ function Dashboard() {
   useEffect(() => {
   api.get("/analytics/meeting-count")
     .then((res) => {
+      console.log("Meeting Count API:", res.data);
       setMeetingCount(res.data.meeting_count);
-    });
+    })
+    .catch((err) => console.error("Meeting Count Error:", err));
 
   api.get("/analytics/total-cost")
     .then((res) => {
+      console.log("Total Cost API:", res.data);
       setTotalCost(res.data.total_hr_cost);
-    });
+    })
+    .catch((err) => console.error("Total Cost Error:", err));
 
   api.get("/insights/")
     .then((res) => {
+      console.log("Insights API:", res.data);
       setInsights(res.data);
-    });
+    })
+    .catch((err) => console.error("Insights Error:", err));
 }, []);
 
 return (
