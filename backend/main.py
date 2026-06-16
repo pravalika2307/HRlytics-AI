@@ -8,6 +8,7 @@ from app.api.meetings import router as meetings_router
 from app.api.analytics import router as analytics_router
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.insights import router as insights_router
+from app.api.dashboard import router as dashboard_router
 
 app = FastAPI(
     title="HRlytics AI",
@@ -36,6 +37,8 @@ app.include_router(calendar_router)
 app.include_router(meetings_router)
 app.include_router(analytics_router)
 app.include_router(insights_router)
+app.include_router(dashboard_router)
+
 
 @app.get("/")
 def root():
