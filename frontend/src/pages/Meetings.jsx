@@ -58,6 +58,26 @@ function Meetings() {
                   borderBottom: "1px solid #374151",
                 }}
               >
+                Project
+              </th>
+
+              <th
+                style={{
+                  textAlign: "left",
+                  padding: "15px",
+                  borderBottom: "1px solid #374151",
+                }}
+              >
+                Confidence
+              </th>
+
+              <th
+                style={{
+                  textAlign: "left",
+                  padding: "15px",
+                  borderBottom: "1px solid #374151",
+                }}
+              >
                 Duration (Hours)
               </th>
 
@@ -89,6 +109,27 @@ function Meetings() {
                   style={{
                     padding: "15px",
                     borderBottom: "1px solid #1f2937",
+                    color: "#60a5fa",
+                  }}
+                >
+                  {meeting.project_name || "General Operations"}
+                </td>
+
+                <td
+                  style={{
+                    padding: "15px",
+                    borderBottom: "1px solid #1f2937",
+                  }}
+                >
+                  {meeting.confidence
+                    ? `${meeting.confidence}%`
+                    : "N/A"}
+                </td>
+
+                <td
+                  style={{
+                    padding: "15px",
+                    borderBottom: "1px solid #1f2937",
                   }}
                 >
                   {meeting.duration}
@@ -98,7 +139,7 @@ function Meetings() {
                   style={{
                     padding: "15px",
                     borderBottom: "1px solid #1f2937",
-                    color: "#60a5fa",
+                    color: "#22c55e",
                     fontWeight: "bold",
                   }}
                 >

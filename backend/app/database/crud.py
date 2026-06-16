@@ -7,17 +7,17 @@ def create_meeting(
     description,
     duration,
     attendees_count,
-    cost
+    cost,
+    project_name,
+    confidence
 ):
-
     meeting = Meeting(
-        title=title,
-        description=description,
-        duration=duration,
-        attendees_count=attendees_count,
-        cost=cost,
-        confidence=0
-    )
+    title=title,
+    duration=duration,
+    cost=cost,
+    project_name=project_name,
+    confidence=confidence
+)
 
     db.add(meeting)
 

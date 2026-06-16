@@ -48,6 +48,9 @@ class Meeting(Base):
     cost = Column(Float)
 
     confidence = Column(Float)
+
+    project_name = Column(String)
+
     #models of the app
 
 class MeetingAttribution(Base):

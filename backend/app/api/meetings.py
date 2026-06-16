@@ -11,6 +11,8 @@ from app.database.session import get_db
 
 from app.database.crud import create_meeting
 
+from app.ai.attribution_engine import attribute_project
+
 router = APIRouter(
     prefix="/meetings",
     tags=["Meetings"]
@@ -28,14 +30,22 @@ def calculate_cost(
         attendees_count=meeting.attendees_count
     )
 
+    attribution = attribute_project(
+    meeting.title,
+    meeting.description,
+    []
+)
+
     saved_meeting = create_meeting(
-        db=db,
-        title=meeting.title,
-        description=meeting.description,
-        duration=meeting.duration_hours,
-        attendees_count=meeting.attendees_count,
-        cost=cost
-    )
+    db=db,
+    title=meeting.title,
+    description=meeting.description,
+    duration=meeting.duration_hours,
+    attendees_count=meeting.attendees_count,
+    cost=cost,
+    project_name=attribution["project"],
+    confidence=attribution["confidence"]
+)
 
     return {
         "id": saved_meeting.id,
