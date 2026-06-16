@@ -33,7 +33,7 @@ function Dashboard() {
 return (
   <div
     style={{
-      marginLeft: "280px",
+      marginLeft: "310px",
       padding: "30px",
     }}
   >

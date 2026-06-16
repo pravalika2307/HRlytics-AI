@@ -1,26 +1,43 @@
+import { motion } from "framer-motion";
+
 function MetricCard({ title, value }) {
   return (
-    <div
+    <motion.div
+      whileHover={{
+        scale: 1.05,
+      }}
+      transition={{
+        duration: 0.2,
+      }}
       style={{
-        
-              background: "linear-gradient(135deg,#1f2937,#111827)",
-              borderRadius: "20px",
-              padding: "25px",
-              minWidth: "220px",
-              boxShadow:"0 8px 25px rgba(0,0,0,0.25)",
-}}
+        background:
+          "linear-gradient(135deg,#172554,#0f172a)",
+        padding: "30px",
+        borderRadius: "20px",
+        minWidth: "220px",
+        boxShadow:
+          "0 10px 25px rgba(0,0,0,0.3)",
+      }}
     >
-      <p
+      <h3
         style={{
           color: "#94a3b8",
-          marginBottom: "10px",
+          marginBottom: "15px",
         }}
       >
         {title}
-      </p>
+      </h3>
 
-      <h1>{value}</h1>
-    </div>
+      <h1
+        style={{
+          color: "white",
+          fontSize: "42px",
+          fontWeight: "700",
+        }}
+      >
+        {value}
+      </h1>
+    </motion.div>
   );
 }
 
