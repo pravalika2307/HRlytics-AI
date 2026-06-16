@@ -28,3 +28,20 @@ HRlytics AI addresses this challenge by connecting meeting data, project attribu
 - AI Attribution Engine
 - Cost Intelligence Engine
 - Analytics Dashboard
+
+## Tech Stack
+
+### Frontend:
+- React
+- Vite
+- Axios
+- Recharts
+
+### Backend:
+- FastAPI
+- SQLAlchemy
+- SQLite
+
+### AI:
+- Attribution Engine
+- Workforce Advisor
