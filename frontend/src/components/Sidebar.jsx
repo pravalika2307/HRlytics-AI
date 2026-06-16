@@ -11,14 +11,18 @@ function Sidebar() {
         position: "fixed",
       }}
     >
-      <h2
-        style={{
-          color: "#60a5fa",
-          marginBottom: "40px",
-        }}
-      >
+      <h2>
         HRlytics AI
       </h2>
+
+      <p
+        style={{
+          color: "#9ca3af",
+          fontSize: "12px",
+        }}
+      >
+        Workforce Intelligence Platform
+      </p>
 
       <div
         style={{

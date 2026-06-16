@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 import MetricCard from "../components/MetricCard";
 import AIInsights from "../components/AIInsights";
+import ExecutiveSummary from "../components/ExecutiveSummary";
 
 function Dashboard() {
   const [meetingCount, setMeetingCount] = useState(0);
@@ -43,6 +44,12 @@ return (
     >
       Workforce Intelligence Command Center
     </h1>
+
+      <ExecutiveSummary
+  totalCost={totalCost}
+  meetingCount={meetingCount}
+  insights={insights}
+/>
 
     <div
       style={{
