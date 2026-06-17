@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import { saveAs } from "file-saver";
+import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 
 function Meetings() {
   const [meetings, setMeetings] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    api.get("/meetings/")
+    api
+      .get("/meetings/")
       .then((res) => {
         setMeetings(res.data);
       })
@@ -18,11 +21,11 @@ function Meetings() {
 
   const exportCSV = () => {
     const csvContent =
-      "Title,Duration,Cost\n" +
+      "Title,Duration,Cost,Project\n" +
       meetings
         .map(
           (meeting) =>
-            `${meeting.title},${meeting.duration},${meeting.cost}`
+            `${meeting.title},${meeting.duration},${meeting.cost},${meeting.project_name || "N/A"}`
         )
         .join("\n");
 
@@ -31,6 +34,8 @@ function Meetings() {
     });
 
     saveAs(blob, "meetings.csv");
+
+    toast.success("CSV exported successfully!");
   };
 
   const filteredMeetings = meetings.filter((meeting) =>
@@ -40,17 +45,23 @@ function Meetings() {
   );
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
       style={{
-        marginLeft: "320px",
+        marginLeft: "280px",
         padding: "30px",
         color: "white",
+        minHeight: "100vh",
+        background: "#0f172a",
       }}
     >
       <h1
         style={{
-          marginBottom: "25px",
           fontSize: "36px",
+          marginBottom: "25px",
+          fontWeight: "700",
         }}
       >
         Meetings History
@@ -73,7 +84,7 @@ function Meetings() {
           }
           style={{
             padding: "12px",
-            width: "300px",
+            width: "320px",
             borderRadius: "10px",
             border: "none",
             outline: "none",
@@ -103,6 +114,7 @@ function Meetings() {
           borderRadius: "15px",
           padding: "20px",
           overflowX: "auto",
+          boxShadow: "0 10px 25px rgba(0,0,0,0.3)",
         }}
       >
         <table
@@ -112,15 +124,12 @@ function Meetings() {
           }}
         >
           <thead>
-            <tr
-              style={{
-                borderBottom: "1px solid #374151",
-              }}
-            >
+            <tr>
               <th
                 style={{
                   padding: "15px",
                   textAlign: "left",
+                  color: "#94a3b8",
                 }}
               >
                 Title
@@ -130,18 +139,30 @@ function Meetings() {
                 style={{
                   padding: "15px",
                   textAlign: "left",
+                  color: "#94a3b8",
                 }}
               >
-                Duration (hours)
+                Duration (hrs)
               </th>
 
               <th
                 style={{
                   padding: "15px",
                   textAlign: "left",
+                  color: "#94a3b8",
                 }}
               >
                 Cost (₹)
+              </th>
+
+              <th
+                style={{
+                  padding: "15px",
+                  textAlign: "left",
+                  color: "#94a3b8",
+                }}
+              >
+                Project
               </th>
             </tr>
           </thead>
@@ -152,8 +173,16 @@ function Meetings() {
                 <tr
                   key={meeting.id}
                   style={{
-                    borderBottom:
-                      "1px solid #1f2937",
+                    borderBottom: "1px solid #1f2937",
+                    transition: "0.2s",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background =
+                      "#1f2937";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background =
+                      "transparent";
                   }}
                 >
                   <td
@@ -181,12 +210,20 @@ function Meetings() {
                   >
                     ₹{meeting.cost}
                   </td>
+
+                  <td
+                    style={{
+                      padding: "15px",
+                    }}
+                  >
+                    {meeting.project_name || "N/A"}
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
                 <td
-                  colSpan="3"
+                  colSpan="4"
                   style={{
                     padding: "25px",
                     textAlign: "center",
@@ -200,7 +237,7 @@ function Meetings() {
           </tbody>
         </table>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

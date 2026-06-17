@@ -5,9 +5,11 @@ function MetricCard({ title, value }) {
     <motion.div
       whileHover={{
         scale: 1.05,
+        y: -5,
       }}
       transition={{
-        duration: 0.2,
+        type: "spring",
+        stiffness: 300,
       }}
       style={{
         background:

@@ -8,16 +8,23 @@ import Advisor from "./pages/Advisor";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Sidebar />
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "#0f172a",
+      }}
+    >
+      <BrowserRouter>
+        <Sidebar />
 
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/meetings" element={<Meetings />} />
-        <Route path="/analytics" element={<Analytics />} />
-        <Route path="/advisor" element={<Advisor />} />
-      </Routes>
-    </BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/meetings" element={<Meetings />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/advisor" element={<Advisor />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

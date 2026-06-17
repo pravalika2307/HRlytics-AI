@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-
 import api from "../services/api";
+import { motion } from "framer-motion";
 
 import {
   ResponsiveContainer,
@@ -15,21 +15,28 @@ function Analytics() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    api
-      .get("/dashboard/summary")
+    api.get("/meetings/")
       .then((res) => {
         setData(res.data);
       });
   }, []);
 
+console.log(data);
+
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
       style={{
         marginLeft: "280px",
         padding: "30px",
+        minHeight: "100vh",
+        background: "#0f172a",
+        color: "white",
       }}
     >
-      <h1>Analytics</h1>
+      <h1>Analytics Dashboard</h1>
 
       <div
         style={{
@@ -44,20 +51,23 @@ function Analytics() {
         <div
           style={{
             width: "100%",
-            height: "400px",
+            minHeight: "400px",
           }}
         >
-          <ResponsiveContainer>
+          <ResponsiveContainer width="100%" height={400}>
             <BarChart data={data}>
-              <XAxis dataKey="name" />
+              <XAxis dataKey="title" />
               <YAxis />
               <Tooltip />
-              <Bar dataKey="cost" />
+              <Bar
+                dataKey="cost"
+                animationDuration={1500}
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

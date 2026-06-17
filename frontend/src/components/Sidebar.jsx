@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import {
   FaChartPie,
@@ -8,26 +8,36 @@ import {
 } from "react-icons/fa";
 
 function Sidebar() {
-  const linkStyle = {
-    color: "white",
+  const linkStyle = ({ isActive }) => ({
+    color: isActive ? "#60A5FA" : "white",
+    background: isActive
+      ? "rgba(96,165,250,0.15)"
+      : "transparent",
     textDecoration: "none",
     fontSize: "18px",
     display: "flex",
     alignItems: "center",
     gap: "12px",
+    padding: "12px 16px",
+    borderRadius: "12px",
     transition: "all 0.2s ease",
-  };
+    fontWeight: isActive ? "600" : "500",
+  });
 
   return (
     <div
       style={{
-        width: "280px",
-        height: "100vh",
-        background: "#111827",
-        padding: "30px",
-        position: "fixed",
-        boxSizing: "border-box",
-      }}
+  width: "280px",
+  height: "100vh",
+  background: "#111827",
+  padding: "30px",
+  position: "fixed",
+  top: 0,
+  left: 0,
+  zIndex: 1000,
+  boxSizing: "border-box",
+  borderRight: "1px solid #1f2937",
+}}
     >
       <h2
         style={{
@@ -45,96 +55,72 @@ function Sidebar() {
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "28px",
+          gap: "16px",
         }}
       >
-        <Link
+        <NavLink
           to="/"
           style={linkStyle}
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = "#60A5FA";
             e.currentTarget.style.transform =
               "translateX(6px)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = "white";
             e.currentTarget.style.transform =
               "translateX(0px)";
           }}
         >
-          <FaChartPie
-            style={{
-              color: "#60A5FA",
-            }}
-          />
+          <FaChartPie />
           Dashboard
-        </Link>
+        </NavLink>
 
-        <Link
+        <NavLink
           to="/meetings"
           style={linkStyle}
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = "#60A5FA";
             e.currentTarget.style.transform =
               "translateX(6px)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = "white";
             e.currentTarget.style.transform =
               "translateX(0px)";
           }}
         >
-          <FaClipboardList
-            style={{
-              color: "#60A5FA",
-            }}
-          />
+          <FaClipboardList />
           Meetings
-        </Link>
+        </NavLink>
 
-        <Link
+        <NavLink
           to="/analytics"
           style={linkStyle}
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = "#60A5FA";
             e.currentTarget.style.transform =
               "translateX(6px)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = "white";
             e.currentTarget.style.transform =
               "translateX(0px)";
           }}
         >
-          <FaChartLine
-            style={{
-              color: "#60A5FA",
-            }}
-          />
+          <FaChartLine />
           Analytics
-        </Link>
+        </NavLink>
 
-        <Link
+        <NavLink
           to="/advisor"
           style={linkStyle}
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = "#60A5FA";
             e.currentTarget.style.transform =
               "translateX(6px)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = "white";
             e.currentTarget.style.transform =
               "translateX(0px)";
           }}
         >
-          <FaRobot
-            style={{
-              color: "#60A5FA",
-            }}
-          />
+          <FaRobot />
           AI Workforce Advisor
-        </Link>
+        </NavLink>
       </div>
     </div>
   );
