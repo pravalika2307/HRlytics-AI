@@ -132,7 +132,7 @@ function Meetings() {
                   textAlign: "left",
                 }}
               >
-                Duration (mins)
+                Duration (hours)
               </th>
 
               <th
