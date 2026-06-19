@@ -36,7 +36,7 @@ return;
 
 ```
 try {
-  await api.post("/meetings/", {
+  await api.post("/meetings/cost", {
     title,
     description,
     duration_hours: Number(durationHours),
@@ -80,11 +80,37 @@ toast.success("CSV exported successfully!");
 
 };
 
+const deleteMeeting = async (id) => {
+  const confirmed = window.confirm(
+    "Are you sure you want to delete this meeting?"
+  );
+
+  if (!confirmed) return;
+
+  try {
+    await api.delete(`/meetings/${id}`);
+
+    setMeetings(
+      meetings.filter(
+        (meeting) => meeting.id !== id
+      )
+    );
+
+    toast.success("Meeting deleted successfully");
+  } catch (error) {
+    toast.error("Failed to delete meeting");
+    console.error(error);
+  }
+};
+
 const filteredMeetings = meetings.filter((meeting) =>
 meeting.title
 ?.toLowerCase()
 .includes(searchTerm.toLowerCase())
 );
+
+console.log(filteredMeetings);
+console.log("Filtered Meetings:", filteredMeetings);
 
 return (
 <motion.div
@@ -276,17 +302,29 @@ Meetings History </h1>
           <th style={{ padding: "15px", textAlign: "left", color: "#94a3b8" }}>
             Project
           </th>
+
+          <th
+  style={{
+    padding: "15px",
+    textAlign: "left",
+    color: "#94a3b8",
+  }}
+>
+  Actions
+</th>
+
         </tr>
       </thead>
 
       <tbody>
-        {filteredMeetings.map((meeting) => (
-          <tr
-            key={meeting.id}
-            style={{
-              borderBottom: "1px solid #1f2937",
-            }}
-          >
+  {filteredMeetings.length > 0 ? (
+    filteredMeetings.map((meeting) => (
+      <tr
+        key={meeting.id}
+        style={{
+          borderBottom: "1px solid #1f2937",
+        }}
+      >
             <td style={{ padding: "15px" }}>
               {meeting.title}
             </td>
@@ -313,13 +351,46 @@ Meetings History </h1>
             <td style={{ padding: "15px" }}>
               {meeting.project_name}
             </td>
+
+            <td style={{ padding: "15px" }}>
+  <button
+    onClick={() =>
+      deleteMeeting(meeting.id)
+    }
+    style={{
+      background: "#dc2626",
+      border: "none",
+      color: "white",
+      padding: "8px 14px",
+      borderRadius: "8px",
+      cursor: "pointer",
+      fontWeight: "600",
+    }}
+  >
+    Delete
+  </button>
+</td>
+
           </tr>
-        ))}
-      </tbody>
+    ))
+  ) : (
+    <tr>
+      <td
+        colSpan="5"
+        style={{
+          padding: "25px",
+          textAlign: "center",
+          color: "#9ca3af",
+        }}
+      >
+        No meetings found
+      </td>
+    </tr>
+  )}
+</tbody>
     </table>
   </div>
 </motion.div>
-
 
 );
 }
