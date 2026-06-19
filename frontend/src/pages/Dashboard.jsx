@@ -1,3 +1,5 @@
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -47,6 +49,65 @@ function Dashboard() {
     : totalCost > 20000
     ? 80
     : 95;
+
+  const generatePDF = () => {
+  const doc = new jsPDF();
+
+  doc.setFontSize(22);
+  doc.text("HRlytics AI Executive Report", 14, 20);
+
+  doc.setFontSize(12);
+
+  doc.text(
+    `Total Workforce Spend: ₹${totalCost}`,
+    14,
+    40
+  );
+
+  doc.text(
+    `Total Meetings: ${meetingCount}`,
+    14,
+    50
+  );
+
+  doc.text(
+    `Average Meeting Cost: ₹${insights.average_cost || 0}`,
+    14,
+    60
+  );
+
+  doc.text(
+    `Highest Cost Meeting: ${
+      insights.highest_meeting || "N/A"
+    }`,
+    14,
+    70
+  );
+
+  autoTable(doc, {
+    startY: 90,
+    head: [["AI Workforce Insights"]],
+    body: [
+      [
+        `Highest Cost Meeting: ${
+          insights.highest_meeting || "N/A"
+        }`,
+      ],
+      [
+        `Average Cost: ₹${
+          insights.average_cost || 0
+        }`,
+      ],
+      [
+        `Peak Meeting Cost: ₹${
+          insights.peak_cost || 0
+        }`,
+      ],
+    ],
+  });
+
+  doc.save("HRlytics_AI_Report.pdf");
+};
 
   return (
     <motion.div
@@ -139,6 +200,26 @@ function Dashboard() {
       >
         Monitor workforce spending, meeting costs and AI insights in real time.
       </p>
+
+      <button
+  onClick={generatePDF}
+  style={{
+    marginTop: "20px",
+    background:
+      "rgba(255,255,255,0.15)",
+    backdropFilter: "blur(10px)",
+    color: "white",
+    border: "1px solid rgba(255,255,255,0.2)",
+    padding: "12px 22px",
+    borderRadius: "12px",
+    cursor: "pointer",
+    fontWeight: "700",
+    transition: "0.3s",
+  }}
+>
+  📄 Download Executive Report
+</button>
+
     </div>
 
     <div
