@@ -16,29 +16,37 @@ function MetricCard({ title, value }) {
           "linear-gradient(135deg,#172554,#0f172a)",
         padding: "30px",
         borderRadius: "20px",
-        minWidth: "220px",
+        minWidth: "180px",
         boxShadow:
-          "0 10px 25px rgba(0,0,0,0.3)",
+  "0 10px 30px rgba(20, 47, 104, 0.2)",
+
+border:
+  "1px solid rgba(96,165,250,0.15)",
+
+backdropFilter:
+  "blur(12px)",
       }}
     >
       <h3
-        style={{
-          color: "#94a3b8",
-          marginBottom: "15px",
-        }}
-      >
-        {title}
-      </h3>
+  style={{
+    color: "#94a3b8",
+    marginBottom: "8px",
+    fontSize: "24px",
+    fontWeight: "500",
+  }}
+>
+  {title}
+</h3>
 
-      <h1
-        style={{
-          color: "white",
-          fontSize: "42px",
-          fontWeight: "700",
-        }}
-      >
-        {value}
-      </h1>
+<h1
+  style={{
+    color: "white",
+    fontSize: "20px",
+    fontWeight: "700",
+  }}
+>
+  {value}
+</h1>
     </motion.div>
   );
 }

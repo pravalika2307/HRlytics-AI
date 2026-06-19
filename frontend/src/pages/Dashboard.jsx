@@ -9,6 +9,8 @@ import ExecutiveSummary from "../components/ExecutiveSummary";
 function Dashboard() {
   const [meetingCount, setMeetingCount] = useState(0);
   const [totalCost, setTotalCost] = useState(0);
+  const [reduction, setReduction] =
+  useState(0);
 
   const [insights, setInsights] = useState({
     average_cost: 0,
@@ -38,6 +40,13 @@ function Dashboard() {
         setLoading(false);
       });
   }, []);
+  
+  const riskScore =
+  totalCost > 50000
+    ? 65
+    : totalCost > 20000
+    ? 80
+    : 95;
 
   return (
     <motion.div
@@ -91,20 +100,176 @@ function Dashboard() {
         Workforce Intelligence Command Center
       </h1>
 
+      <div
+  style={{
+    background:
+      "linear-gradient(135deg,#2563eb,#7c3aed)",
+    padding: "30px",
+    borderRadius: "24px",
+    marginBottom: "30px",
+    color: "white",
+    boxShadow:
+      "0 15px 40px rgba(37,99,235,0.25)",
+  }}
+>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      flexWrap: "wrap",
+      gap: "20px",
+    }}
+  >
+    <div>
+      <h2
+        style={{
+          fontSize: "30px",
+          marginBottom: "10px",
+        }}
+      >
+        👋 Welcome back, HR Team
+      </h2>
+
+      <p
+        style={{
+          opacity: 0.9,
+          fontSize: "16px",
+        }}
+      >
+        Monitor workforce spending, meeting costs and AI insights in real time.
+      </p>
+    </div>
+
+    <div
+      style={{
+        display: "flex",
+        gap: "15px",
+        flexWrap: "wrap",
+      }}
+    >
+      <div
+        style={{
+          background: "rgba(255,255,255,0.15)",
+          padding: "12px 18px",
+          borderRadius: "14px",
+        }}
+      >
+        📊 {meetingCount} Meetings
+      </div>
+
+      <div
+        style={{
+          background: "rgba(255,255,255,0.15)",
+          padding: "12px 18px",
+          borderRadius: "14px",
+        }}
+      >
+        💰 ₹{totalCost}
+      </div>
+
+      <div
+        style={{
+          background: "rgba(255,255,255,0.15)",
+          padding: "12px 18px",
+          borderRadius: "14px",
+        }}
+      >
+        🤖 AI Active
+      </div>
+    </div>
+  </div>
+</div>
+
       <ExecutiveSummary
         totalCost={totalCost}
         meetingCount={meetingCount}
         insights={insights}
       />
 
+        {/* ADD THIS BLOCK HERE */}
+
+<div
+  style={{
+    background: "#111827",
+    padding: "25px",
+    borderRadius: "20px",
+    marginTop: "30px",
+    marginBottom: "30px",
+  }}
+>
+  <h2>🔮 Predicted Next Month Cost</h2>
+
+  <h1
+    style={{
+      marginTop: "15px",
+      color: "#60A5FA",
+    }}
+  >
+    ₹{Math.round(totalCost * 1.15)}
+  </h1>
+
+  <p
+    style={{
+      color: "#94a3b8",
+      marginTop: "10px",
+    }}
+  >
+    Projected 15% increase based on current workforce spending trends.
+  </p>
+</div>
+
+<div
+  style={{
+    textAlign: "center",
+    marginTop: "50px",
+  }}
+></div>
+
       <div
-        style={{
-          display: "flex",
-          gap: "20px",
-          flexWrap: "wrap",
-          marginBottom: "30px",
-        }}
-      >
+  style={{
+    background: "#111827",
+    padding: "25px",
+    borderRadius: "20px",
+    marginBottom: "30px",
+  }}
+>
+  <h2 style={{ marginBottom: "20px" }}>
+    💰 Cost Savings Simulator
+  </h2>
+
+  <input
+    type="number"
+    placeholder="Reduce meetings by %"
+    value={reduction}
+    onChange={(e) =>
+      setReduction(e.target.value)
+    }
+    style={{
+      padding: "12px",
+      width: "250px",
+      borderRadius: "10px",
+      border: "none",
+      marginRight: "15px",
+    }}
+  />
+
+  <h3 style={{ marginTop: "20px" }}>
+    Estimated Savings: ₹
+    {Math.round(
+      (totalCost * reduction) / 100
+    )}
+  </h3>
+</div>
+
+      <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(4, 1fr)",
+    gap: "20px",
+    marginBottom: "30px",
+  }}
+>
         <MetricCard
           title="Meetings"
           value={
@@ -142,6 +307,12 @@ function Dashboard() {
               : insights.highest_meeting
           }
         />
+
+        <MetricCard
+  title="Risk Score"
+  value={`${riskScore}/100`}
+/>      
+
       </div>
 
       <AIInsights insights={insights} />
@@ -150,7 +321,7 @@ function Dashboard() {
         style={{
           textAlign: "center",
           marginTop: "50px",
-          color: "#94a3b8",
+          color: "#c1d0e5",
           fontSize: "14px",
         }}
       >

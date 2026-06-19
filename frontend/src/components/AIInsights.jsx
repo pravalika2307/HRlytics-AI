@@ -10,22 +10,19 @@ function AIInsights({ insights }) {
     >
       <h2>AI Workforce Insights</h2>
 
-      <br />
-
       <p>
         💰 Highest Cost Meeting:
         {" "}
         {insights.highest_meeting}
       </p>
 
-      <br />
+      
 
       <p>
         📈 Average Meeting Cost:
         ₹{insights.average_cost}
       </p>
 
-      <br />
 
       <p>
         🎯 Peak Meeting Cost:

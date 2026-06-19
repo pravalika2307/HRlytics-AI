@@ -16,37 +16,33 @@ function ExecutiveSummary({
 
       <br />
 
-      <p>
-        💰 Total Workforce Spend: ₹{totalCost}
-      </p>
+      <div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: "8px",
+  }}
+>
+  <p style={{ margin: 0 }}>
+    💰 Total Workforce Spend: ₹{totalCost}
+  </p>
 
-      <br />
+  <p style={{ margin: 0 }}>
+    📊 Total Meetings: {meetingCount}
+  </p>
 
-      <p>
-        📊 Total Meetings: {meetingCount}
-      </p>
+  <p style={{ margin: 0 }}>
+    🎯 Highest Cost Meeting: {insights.highest_meeting}
+  </p>
 
-      <br />
+  <p style={{ margin: 0 }}>
+    📈 Average Meeting Cost: ₹{insights.average_cost}
+  </p>
 
-      <p>
-        🎯 Highest Cost Meeting:
-        {" "}
-        {insights.highest_meeting}
-      </p>
-
-      <br />
-
-      <p>
-        📈 Average Meeting Cost:
-        ₹{insights.average_cost}
-      </p>
-
-      <br />
-
-      <p>
-        🤖 Recommendation:
-        Review recurring meetings with high attendance and cost.
-      </p>
+  <p style={{ margin: 0 }}>
+    🤖 Recommendation: Review recurring meetings with high attendance and cost.
+  </p>
+</div>
     </div>
   );
 }
