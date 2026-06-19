@@ -11,6 +11,12 @@ import ExecutiveSummary from "../components/ExecutiveSummary";
 function Dashboard() {
   const [meetingCount, setMeetingCount] = useState(0);
   const [totalCost, setTotalCost] = useState(0);
+  const healthScore = Math.max(
+  0,
+  100 -
+    totalCost / 500 -
+    meetingCount * 2
+);
   const [reduction, setReduction] =
   useState(0);
 
@@ -268,7 +274,74 @@ function Dashboard() {
         insights={insights}
       />
 
-        {/* ADD THIS BLOCK HERE */}
+      <div
+  style={{
+    background:
+      "linear-gradient(135deg,#10b981,#059669)",
+    padding: "25px",
+    borderRadius: "20px",
+    marginBottom: "25px",
+    color: "white",
+    boxShadow:
+      "0 10px 30px rgba(16,185,129,0.25)",
+  }}
+>
+  <h2>🏆 Workforce Health Score</h2>
+
+  <h1
+    style={{
+      fontSize: "52px",
+      margin: "15px 0",
+    }}
+  >
+    {healthScore.toFixed(0)}
+  </h1>
+
+  <p>
+    {healthScore > 80
+      ? "🟢 Excellent Workforce Efficiency"
+      : healthScore > 60
+      ? "🟡 Moderate Workforce Efficiency"
+      : "🔴 Optimization Needed"}
+  </p>
+</div>
+
+<div
+  style={{
+    background: "#111827",
+    padding: "25px",
+    borderRadius: "20px",
+    marginBottom: "25px",
+  }}
+>
+  <h2>💡 Cost Saving Opportunities</h2>
+
+  <div
+    style={{
+      marginTop: "15px",
+      display: "flex",
+      flexDirection: "column",
+      gap: "10px",
+    }}
+  >
+    <div>
+      💰 Potential Monthly Savings:
+      ₹{Math.round(totalCost * 0.15)}
+    </div>
+
+    <div>
+      🎯 Reduce recurring meetings
+    </div>
+
+    <div>
+      👥 Limit unnecessary attendees
+    </div>
+
+    <div>
+      📅 Merge duplicate review sessions
+    </div>
+  </div>
+</div>
 
 <div
   style={{
